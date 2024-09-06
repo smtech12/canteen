@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/FrontTheme/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="assets/FrontTheme/css/style.css" >
+        <!-- Flaticons CSS -->
+        <link rel="stylesheet" href="assets/FrontTheme/icons/flaticon/flaticon.css" >
+        <!-- Hover Animate CSS -->
+        <link rel="stylesheet" href="assets/FrontTheme/css/hover-min.css" >
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="assets/FrontTheme/css/animate.css" >
+
+        <title>Canteen Management System</title>
+    </head>
+    <body class="bg-image" style="background-image: url(assets/FrontTheme/images/bg_comp.jpg);">
+        <!-- BEGIN:: Main -->
+        <main>
+            <!-- BEGIN:: Header -->
+            <header>
+                <div class="container-fluid">
+                    <div class="row">                        
+                        <div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-5 col-md-12">
+                                    <div class="logo">
+                                        <h2 class="text-uppercase">Canteen Management</h2>
+                                        <span>System<b>.</b></span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 col-lg-7 col-md-12">
+                                    <div class="filter-wrapper">
+                                        <div class="title">
+                                            <span>Filter By</span>
+                                        </div>
+                                        <ul class="filter-btn-list list-unstyled">
+                                            <li><button type="button" class="btn
+                                                    btn-primary">Today</button></li>
+                                            <li><button type="button" class="btn
+                                                    btn-primary">Weekly</button></li>
+                                            <li><button type="button" class="btn
+                                                    btn-primary">Monthly</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- EDN:: Header -->
+
+            <!-- BEGIN:: Content Section -->
+            <section class="today-menu">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
+                            <!-- BEGIN:: ROW CONTENT-->
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="card gradient-left animated flipInX fast">
+                                        <div class="food-bg"></div>
+                                        <div class="card-body">
+                                            <div class="menu-time-icon animated flipInY delay-1s">
+                                                <i class="flaticon-food-1 lunch"></i>
+                                            </div>
+                                            <div class="Menu-Date-Time animated bounceInRight delay-1s">
+                                                <span class="title">LUNCH</span>
+                                                <span class="date">{{Date}}</span>
+                                                <span class="day"><sup>Day</sup>{{Day}}</span>
+                                                <span class="year">{{Year}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card gradient-left animated flipInX delay-1s">
+                                        <div class="card-body">
+                                            <div class="menu-btn">
+                                                <a routerLink="/listview" class="btn-view-complete hvr-forward">view complete menu <i class="flaticon-right-arrow"></i></a>
+                                                <div class="menu-btn-icon animated flipInY delay-1s">
+                                                    <i class="flaticon-menu-1"></i>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <div class="card gradient-right animated zoomIn delay-1s">
+                                        <div class="card-body">
+                                            <div class="menu-list">
+                                                <ul>
+                                                    <li class="menu-item">
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-3 col-md-2 col-sm-2">
+                                                                <span class="list-img">
+                                                                    <img class="img-fluid" src="assets/FrontTheme/images/lunch.png" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xl-10 col-lg-9 col-md-10 col-sm-10">
+                                                                <div class="item-content">
+                                                                    <h2>{{DishName}}</h2>
+                                                                    <p class="text-wrap">{{DishDesc}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <div class="row">
+                                                        <div class="col-xl-2 col-lg-3 col-md-2 col-sm-2">
+                                                        <span class="list-img">
+                                                            <img class="img-fluid" src="assets/FrontTheme/images/lunch.png" />
+                                                        </span>
+                                                        </div>
+                                                        <div class="col-xl-10 col-lg-9 col-md-10 col-sm-10">
+                                                            <div class="item-content">
+                                                                <h2>Serve With</h2>
+                                                                <p>Raita and Salad</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <div class="row">
+                                                            <div class="col-xl-2 col-lg-3 col-md-2 col-sm-2">
+                                                                <span class="list-img">
+                                                                    <img class="img-fluid" src="assets/FrontTheme/images/lunch.png" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xl-10 col-lg-9 col-md-10 col-sm-10">
+                                                                <div class="item-content">
+                                                                    <h2>Fruit Trifle</h2>
+                                                                    <p>Fresh banana custard with a crackling caramelized</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12">
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- EDN:: Content Section -->
+
+            <!-- BEGIN:: Footer -->
+            <footer>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="powered-by">Powered By | MATTS TECHNOLOGIES</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="copyrights">COPYRIGHT - 2020</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </footer>
+            <!-- EDN:: Footer -->
+
+        </main>
+        <!-- END:: Main -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="assets/FrontTheme/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="assets/FrontTheme/js/bootstrap.min.js"></script>
+    </body>

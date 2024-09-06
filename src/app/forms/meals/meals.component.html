@@ -1,0 +1,214 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Meal</h1>
+    <a href="#" data-toggle="modal" (click)="OpenModal()"
+        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-arrow-right fa-sm text-white-50"></i> Create Meal</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Meal List</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                    </div>
+                    <!-- <div *ngIf="searchText == ''">
+                        <table class="table table-bordered table-striped table-responsive-sm" id="dataTable"
+                            width="100%" cellspacing="0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Meal ID</th>
+                                    <th>Meal Description</th>
+                                    <th>Meal Time From</th>
+                                    <th>Meal Time To</th>
+                                    <th>Is Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pageOfItems | filter:term">
+                                    <td>{{item.MealID}}</td>
+                                    <td>{{item.Description}}</td>
+                                    <td>{{item.TimeFrom}}</td>
+                                    <td>{{item.TimeTo}}</td>
+                                    <td><span class="btn-success">{{item.isActive}}</span></td>
+                                    <td>
+                                        <a class="btn btn-primary btn-icon-split" data-toggle="modal"
+                                            (click)="SelectMealByID(item.MealID)" data-target="#CreateMealModal"
+                                            href="#">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Edit</span>
+                                        </a>
+
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <a class="btn btn-danger btn-icon-split"
+                                            (click)="DeleteByID('tblMeals',item.MealID)">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete</span>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-footer pb-0 pt-3">
+                            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+                        </div>
+                    </div> -->
+
+
+                    <p-table [value]="ArrMeals">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Meal ID</th>
+                                <th>Meal Description</th>
+                                <th>Meal Time From</th>
+                                <th>Meal Time To</th>
+                                <th>Is Active</th>
+                                <th>Actions</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td>{{item.MealID}}</td>
+                                <td>{{item.Description}}</td>
+                                <td>{{item.TimeFrom}}</td>
+                                <td>{{item.TimeTo}}</td>
+                                <td><span class="btn-success">{{item.isActive}}</span></td>
+                                <td>
+                                    <a class="btn btn-primary btn-icon-split" data-toggle="modal"
+                                        (click)="SelectMealByID(item.MealID)" data-target="#CreateMealModal" href="#">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Edit</span>
+                                    </a>
+
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <a class="btn btn-danger btn-icon-split"
+                                        (click)="DeleteByID('tblMeals',item.MealID)">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Create Modal -->
+<div class="modal fade bd-example-modal-xl" id="CreateMealModal" tabindex="-1" role="dialog"
+    aria-labelledby="CreateMealModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateMealModalLabel">Create New Meal</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="MealDescription">Meal Description</label>
+                                    <textarea #Description type="text" class="form-control" id="MealDescription"
+                                        formControlName="Description" [(ngModel)]="Desc"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Description.errors }"
+                                        placeholder="Enter Meal Description"></textarea>
+                                    <input #ID hidden type="text" value="" placeholder="" [(ngModel)]="MealID"
+                                        formControlName="ID" class="form-control" />
+                                    <div *ngIf="form.get('Description').pending">
+                                    </div>
+                                    <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Description.errors.required">Description is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="MealTimeFrom">Meal Time From</label>
+                                    <div class="input-group date" id="MealTimeFrom">
+                                        <input #TimeFrom type="time" value="" placeholder="dd/mm/yyyy" [(ngModel)]="TF"
+                                            formControlName="TimeFrom" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.TimeFrom.errors }" />
+                                        <div *ngIf="form.get('TimeFrom').pending">
+                                        </div>
+
+                                        <div class="input-group-addon input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="submitted && f.TimeFrom.errors" class="invalid-feedback">
+                                            <div *ngIf="f.TimeFrom.errors.required">Time From is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="MealTimeTo">Meal Time To</label>
+                                    <div class="input-group date" id="MealTimeTo">
+                                        <input #TimeTo type="time" value="" placeholder="dd/mm/yyyy" [(ngModel)]="TT"
+                                            formControlName="TimeTo" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.TimeTo.errors }" />
+                                        <div *ngIf="form.get('TimeTo').pending">
+
+                                        </div>
+                                        <div class="input-group-addon input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="submitted && f.TimeTo.errors" class="invalid-feedback">
+                                            <div *ngIf="f.TimeTo.errors.required">Time To is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="UserStatus">Is Active?</label>
+                                    <div class="clearfix"></div>
+                                    <input #chk id="switch" type="checkbox" (change)="CheckBoxEvent($event)"
+                                        [checked]="chk1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- data-dismiss="modal" -->
+                        <button class="btn btn-secondary" type="submit" (click)="ResetForm()">Cancel</button>
+                        <button type="submit" class="btn btn-primary"
+                            (click)="CreateMeal(ID.value,Description.value,TimeFrom.value,TimeTo.value,chk1)">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

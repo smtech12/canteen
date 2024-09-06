@@ -1,0 +1,93 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Deisgnation</h1>
+    <a href="#" data-toggle="modal" (click)="OpenModal()"
+        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-arrow-right fa-sm text-white-50"></i> Create Designation</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Designation List</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                    </div>
+                    <table class="table table-bordered table-striped table-responsive-sm" id="dataTable" width="100%"
+                        cellspacing="0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Designation ID</th>
+                                <th>Designation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of pageOfItems | filter:term | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td>{{item.DesignationID}}</td>
+                                <td>{{item.Designation}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-footer pb-0 pt-3">
+                        <!-- <jw-pagination [items]="items" (changePage)="p = onChangePage($event)"></jw-pagination> -->
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Create Modal -->
+<div class="modal fade bd-example-modal-xl" id="CreateDesignationModal" tabindex="-1" role="dialog"
+    aria-labelledby="CreateDesignationModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateDesignationModal">Create New Designation</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Designation">Designation</label>
+                                    <textarea #Designation type="text" class="form-control" id="Designation"
+                                        formControlName="Designation" [(ngModel)]="Desc"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Designation.errors }"
+                                        placeholder="Enter Designation"></textarea>
+                                    <input #ID hidden type="text" value="" placeholder="" [(ngModel)]="DesignationID"
+                                        formControlName="ID" class="form-control" />
+                                    <div *ngIf="form.get('Designation').pending">
+                                    </div>
+                                    <div *ngIf="submitted && f.Designation.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Designation.errors.required">Designation is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- data-dismiss="modal" -->
+                        <button class="btn btn-secondary" type="submit" (click)="ResetForm()">Cancel</button>
+                        <button type="submit" class="btn btn-primary"
+                            (click)="CreateMeal(Designation.value)">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

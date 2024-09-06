@@ -1,0 +1,60 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Menu Details</h1>
+  <a [routerLink]="['/dashboard','addMenuDetail']"
+    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+      class="fas fa-arrow-right fa-sm text-white-50"></i> Create New Menu</a>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Menu List</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+            </div>
+          <table class="table table-bordered table-striped table-responsive-sm" id="dataTable" width="100%"
+            cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Published Date</th>
+                <th>isPublished</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of pageOfItems  | filter:term">
+                <td>{{item.MenuID}}</td>
+                <td>{{item.Description}}</td>
+                <td>{{getDate(item.PublishDate)}}</td>
+                <td>{{item.isPublished}}</td>
+                <td>
+                  <span >
+                    <!-- <i class="fa fa-pencil mr-2"></i> -->
+                    <img style="width: 20px ; height: 20px;" src="assets/view.png" (click)="NevigateToMenuDetails(item)" >
+                </span>
+                <span >
+                  <!-- <i class="fa fa-trash-o ml-2"></i> -->
+                  <img style="width: 20px ; height: 20px;" src="assets/delete.png" (click)="detele(item)">
+                </span>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card-footer pb-0 pt-3">
+              <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

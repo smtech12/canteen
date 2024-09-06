@@ -1,0 +1,146 @@
+<div class="row">
+    <div class="col-8">
+        <ng-container *ngIf="radioValue === 'weekly'">
+            <nz-range-picker [nzRanges]="range" [(ngModel)]="dateRange" (ngModelChange)="getWeek($event)"
+                nzPlaceHolder="Select week" style="width: 100%;"></nz-range-picker>
+            <!-- <nz-week-picker [(ngModel)]="monthDate" (ngModelChange)="getWeek($event)" nzPlaceHolder="Select week"
+              style="width: 100%;">
+          </nz-week-picker> -->
+        </ng-container>
+        <ng-container *ngIf="radioValue === 'monthly'">
+            <nz-month-picker [(ngModel)]="weekDate" (ngModelChange)="getMonth($event)" nzPlaceHolder="Select month"
+                style="width: 100%;">
+            </nz-month-picker>
+        </ng-container>
+        <ng-container *ngIf="radioValue === 'manual'">
+            <nz-range-picker [nzRanges]="range" [(ngModel)]="dateRange" (ngModelChange)="getRange($event)"
+                nzPlaceHolder="Select range" style="width: 100%;"></nz-range-picker>
+        </ng-container>
+    </div>
+
+    <div class="col-4">
+        <button nz-button nzType="primary" (click)="publishMenu()">Publish</button>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <nz-radio-group [(ngModel)]="radioValue" style="width: 100%;">
+            <label nz-radio nzValue="weekly">Weekly</label>
+            <label nz-radio nzValue="monthly">Monthly</label>
+            <label nz-radio nzValue="manual">Manual</label>
+        </nz-radio-group>
+    </div>
+</div>
+
+
+<div class="row">
+    <nz-table #basicTable [nzData]="dayDates" style="width: 100%;">
+        <thead>
+            <tr>
+                <th nzWidth="15%">Days</th>
+                <th nzWidth="20%">Meal</th>
+                <th nzWidth="25%">Date</th>
+                <th nzWidth="30%">Dish</th>
+                <th nzWidth="10%"></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of dayDates">
+            <tr>
+                <td nzWidth="15%">{{item.day}}</td>
+                <td nzWidth="20%">{{item.mealName}}</td>
+                <td nzWidth="25%">
+                    <ng-container *ngFor="let dt of item.dates">
+                        {{getDate(dt)}}<br>
+                    </ng-container>
+                </td>
+                <td nzWidth="30%">
+                    <nz-select [nzMaxTagCount]="3" [nzMaxTagPlaceholder]="Dishes" nzMode="multiple"
+                        nzPlaceHolder="Select Dishes" style="width: 100%;" [(ngModel)]="item.dishIds">
+                        <ng-container *ngFor="let dish of dishes">
+                            <nz-option [nzLabel]="dish.DishName" [nzValue]="dish.MenuDishID"></nz-option>
+                        </ng-container>
+                        <!-- (ngModelChange)="setDish($event, item, meal.MealID)" -->
+                    </nz-select>
+                </td>
+                <td nzWidth="10%">
+                    <ng-container *ngIf="!item.isSaved; else elseSaved">
+                        <button nz-button nzType="primary" (click)="saveAll(item, item.mealId)"
+                            [disabled]="item.dishIds.length === 0">Save</button>
+                    </ng-container>
+                    <ng-template #elseSaved>
+                        <button nz-button nzType="primary" [disabled]="item.isSaved">Saved</button>
+                    </ng-template>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+
+<nz-modal [(nzVisible)]="!isAddTemplate" nzTitle="Add Menu" (nzOnCancel)="cancel()">
+    <div>
+        <!-- <div class="row">
+          <div class="col-md-12">
+              <div class="form-row">
+                  <input nz-input placeholder="Name" [(ngModel)]="mealName" />
+              </div>
+          </div>
+      </div> -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-row">
+                    <textarea rows="3" nz-input placeholder="Description" [(ngModel)]="mealDescription"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+              <div class="form-row">
+                  <div class="col-md-4">
+                      <label>Start Time</label>
+                  </div>
+                  <div class="col-md-2">
+                      <nz-input-number [(ngModel)]="startTime.hour" (ngModelChange)="checkHour('start')" [nzMin]="0"
+                          [nzMax]="23" [nzStep]="1">
+                      </nz-input-number>
+                  </div>
+                  <span style="margin-left: 20px; margin-right: 5px;">:</span>
+                  <div class="col-md-2">
+                      <nz-input-number [(ngModel)]="startTime.minute" (ngModelChange)="checkMinute('start')"
+                          [nzMin]="0" [nzMax]="59" [nzStep]="1">
+                      </nz-input-number>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+              <div class="form-row">
+                  <div class="col-md-4">
+                      <label>End Time</label>
+                  </div>
+                  <div class="col-md-2">
+                      <nz-input-number [(ngModel)]="endTime.hour" (ngModelChange)="checkHour('end')" [nzMin]="0"
+                          [nzMax]="23" [nzStep]="1">
+                      </nz-input-number>
+                  </div>
+                  <span style="margin-left: 20px; margin-right: 5px;">:</span>
+                  <div class="col-md-2">
+                      <nz-input-number [(ngModel)]="endTime.minute" (ngModelChange)="checkMinute('end')" [nzMin]="0"
+                          [nzMax]="59" [nzStep]="1">
+                      </nz-input-number>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+
+    </div>
+    <div *nzModalFooter>
+        <button nz-button nzType="primary" (click)="saveMenu()" [nzLoading]="isConfirmLoading">Save</button>
+    </div>
+</nz-modal>

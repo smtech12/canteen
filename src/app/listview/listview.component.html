@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/FrontTheme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/FrontTheme/css/style.css">
+    <!-- Flaticons CSS -->
+    <link rel="stylesheet" href="assets/FrontTheme/icons/flaticon/flaticon.css">
+    <!-- Hover Animate CSS -->
+    <link rel="stylesheet" href="assets/FrontTheme/css/hover-min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/FrontTheme/css/animate.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+    <title>Canteen Management System</title>
+</head>
+
+<body class="bg-image" style="background-image: url(assets/FrontTheme/images/bg_comp.jpg);">
+    <!-- BEGIN:: Main -->
+    <main>
+        <!-- BEGIN:: Header -->
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-5 col-md-12">
+                                <div class="logo">
+                                    <h2 class="text-uppercase">Canteen Management</h2>
+                                    <span>System<b>.</b></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-8 col-lg-7 col-md-12">
+                                <div class="filter-wrapper">
+                                    <div class="title">
+                                        <span>Filter By</span>
+                                    </div>
+                                    <ul class="filter-btn-list list-unstyled">
+                                        <li><button type="button" class="btn
+                                                    btn-primary">Today</button></li>
+                                        <li><button type="button" class="btn
+                                                    btn-primary">Weekly</button></li>
+                                        <li><button type="button" class="btn
+                                                    btn-primary">Monthly</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- EDN:: Header -->
+
+        <!-- BEGIN:: Content Section -->
+        <section class="today-menu">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-10 col-lg-11 col-md-12 col-sm-12">
+                        <table id="MenuList" class="table table-striped dt-responsive" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th width="10%">Day</th>
+                                    <th width="20">Date</th>
+                                    <th width="50%">Menu</th>
+                                    <th width="20%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ArrVMMealDetail">
+                                    <td>{{item.Day}}</td>
+                                    <td>{{item.MenuDate}}</td>
+                                    <td>{{item.DishName}}</td>
+                                    <td>
+                                        <a (click)="SelectMenuDetailByDate(item.MenuDate)" class="btn btn-action" data-toggle="modal"
+                                            data-target=".bd-example-modal-xl">Detail View</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EDN:: Content Section -->
+
+        <!-- BEGIN:: Footer -->
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="powered-by">Powered By | MATTS TECHNOLOGIES</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="copyrights">COPYRIGHT - 2020</span>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+        <!-- EDN:: Footer -->
+
+        <!-- BEGIN:: MODAL -->
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Menu Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1 class="menu-title">Lunch</h1>
+                                <ul class="menu-details">
+                                    <li><span>Dish Type:</span>
+                                        <p>{{DishType}}</p>
+                                    </li>
+                                    <li><span>Dish Name:</span>
+                                        <p>{{DishName}}</p>
+                                    </li>
+                                    <li><span>Dish Description:</span>
+                                        <p>{{DishDesc}}</p>
+                                    </li>
+                                    <li><span>Day:</span>
+                                        <p>{{Day}}</p>
+                                    </li>
+                                    <li><span>Time:</span>
+                                        <p>{{TimeFrom}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="menu-title">Dinner</h1>
+                                <ul class="menu-details">
+                                    <li><span>Dish Type:</span>
+                                        <p>{{DishType1}}</p>
+                                    </li>
+                                    <li><span>Dish Name:</span>
+                                        <p>{{DishName1}}</p>
+                                    </li>
+                                    <li><span>Dish Description:</span>
+                                        <p>{{DishDesc1}}</p>
+                                    </li>
+                                    <li><span>Day:</span>
+                                        <p>{{Day1}}</p>
+                                    </li>
+                                    <li><span>Time:</span>
+                                        <p>{{TimeFrom1}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END:: MODAL -->
+
+    </main>
+    <!-- END:: Main -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/FrontTheme/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="assets/FrontTheme/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MenuList').DataTable();
+        });
+    </script>
+</body>
+
+</html>

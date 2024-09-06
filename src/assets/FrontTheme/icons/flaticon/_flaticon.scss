@@ -1,0 +1,64 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 25/04/2020 09:26
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("../flaticon/Flaticon.eot");
+  src: url("../flaticon/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../flaticon/Flaticon.woff2") format("woff2"),
+       url("../flaticon/Flaticon.woff") format("woff"),
+       url("../flaticon/Flaticon.ttf") format("truetype"),
+       url("../flaticon/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../flaticon/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-dinner:before { content: "\f100"; }
+.flaticon-canteen:before { content: "\f101"; }
+.flaticon-dish:before { content: "\f102"; }
+.flaticon-food:before { content: "\f103"; }
+.flaticon-right-arrow:before { content: "\f104"; }
+.flaticon-picture-frame:before { content: "\f105"; }
+.flaticon-frame:before { content: "\f106"; }
+.flaticon-user-male-silhouette:before { content: "\f107"; }
+.flaticon-menu:before { content: "\f108"; }
+.flaticon-dinner-1:before { content: "\f109"; }
+.flaticon-food-1:before { content: "\f10a"; }
+.flaticon-menu-1:before { content: "\f10b"; }
+    
+    $font-Flaticon-dinner: "\f100";
+    $font-Flaticon-canteen: "\f101";
+    $font-Flaticon-dish: "\f102";
+    $font-Flaticon-food: "\f103";
+    $font-Flaticon-right-arrow: "\f104";
+    $font-Flaticon-picture-frame: "\f105";
+    $font-Flaticon-frame: "\f106";
+    $font-Flaticon-user-male-silhouette: "\f107";
+    $font-Flaticon-menu: "\f108";
+    $font-Flaticon-dinner-1: "\f109";
+    $font-Flaticon-food-1: "\f10a";
+    $font-Flaticon-menu-1: "\f10b";

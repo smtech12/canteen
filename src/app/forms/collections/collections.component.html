@@ -1,0 +1,128 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Collections</h1>
+        <a href="#" data-toggle="modal" (click)="OpenModal()"
+            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-arrow-right fa-sm text-white-50"></i> Create Collections</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Collection List</h6>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-responsive-sm" id="dataTable"
+                            width="100%" cellspacing="0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Caption</th>
+                                    <th>Is Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pageOfItems | filter:term">
+                                    <td>{{item.CollectionID}}</td>
+                                    <td>{{item.Caption}}</td>
+                                    <td><span class="btn-success">{{item.isActive}}</span></td>
+                                    <td>
+                                        <a class="btn btn-primary btn-icon-split" data-toggle="modal"
+                                            (click)="SelectCollectionByID(item.CollectionID)"
+                                            data-target="#CreateCollectionsModal" href="#">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Edit</span>
+                                        </a>
+                                        <a class="btn btn-danger btn-icon-split"
+                                            (click)="DeleteByID('tblCollections',item.CollectionID)">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-footer pb-0 pt-3">
+                            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- CreateUser Modal-->
+<div class="modal fade bd-example-modal-sm" id="CreateCollectionsModal" tabindex="-1" role="dialog"
+    aria-labelledby="CreateUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateDishTypeModalLabel">Create New Collection</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="DishType">Caption</label>
+                                    <input #Caption type="text" class="form-control" id="DishType"
+                                        placeholder="Enter Caption" [(ngModel)]="CP" formControlName="Caption"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Caption.errors }">
+                                   
+                                    <input #ID hidden type="text" value="" placeholder="" [(ngModel)]="CID"
+                                        class="form-control" />
+                                   
+                                    <div *ngIf="submitted && f.Caption.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Caption.errors.required">Caption is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="DishType">File</label>
+                                    <input id="file-input" #Image type="file"
+                                        (change)="handleFileInput($event.target.files)" [(ngModel)]="FU" formControlName="Image"
+                                        [ngClass]="{ 'is-invalid': submitted && f.Image.errors }" />
+                                    <!-- <div *ngIf="form.get('Image').pending"></div> -->
+                                    <div *ngIf="submitted && f.Image.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Image.errors.required">Image is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="UserStatus">Is Active?</label>
+                                    <div class="clearfix"></div>
+                                    <input #chk id="switch" type="checkbox" (change)="CheckBoxEvent($event)"
+                                        [checked]="chk1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" (click)="ResetForm()">Cancel</button>
+                        <button type="submit" (click)="CreateCollection(ID.value,Caption.value,chk1)"
+                            class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
