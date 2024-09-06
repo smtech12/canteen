@@ -24,7 +24,7 @@ export class ApilayerService {
   constructor(private http: HttpClient) {
   }
 
-  // Local
+  // Local API URL
    BaselocalUrl: string = 'http://localhost:48484/api/';
 
   // Own Server
