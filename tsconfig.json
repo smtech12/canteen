@@ -7,9 +7,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
+    "module": "es2015", // Change to a valid module option
     "moduleResolution": "node",
-    "importHelpers": true,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
@@ -17,7 +16,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "importHelpers": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

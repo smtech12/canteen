@@ -30,14 +30,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "src/assets/Theme/css/style.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/assets/Theme/css/style.css", "src/styles.css"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -101,17 +94,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
-            ],
-            "scripts": [
-              "../node_modules/jquery/dist/jquery.min.js"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
+            "scripts": ["../node_modules/jquery/dist/jquery.min.js"]
           }
         },
         "lint": {
@@ -122,9 +107,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
