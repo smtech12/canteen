@@ -73,8 +73,6 @@ export class DishtypeComponent implements OnInit {
         this.ObjDishType = result as DishType;
         if (this.ObjDishType != null) {
           this.SelectDishType();
-          alert("Dish Type added Successfully");
-          this.AlertService.success("Data Update Successfully");
           $("#CreateDishTypeModal").modal('hide');
 
           this.ClearAllFields();
@@ -82,8 +80,6 @@ export class DishtypeComponent implements OnInit {
       }, (err) => {
         console.log(err);
         if (err.error != null) {
-          this.AlertService.success("Data Not Save");
-          alert("Data Not Save");
         }
       });
     }
